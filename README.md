@@ -12,7 +12,7 @@ another site. GitHub Pages serves `main` as it is.
 | `/support/` | Contact, restoring Pro, the daily allowance, questions |
 | `/privacy/` | The privacy policy |
 | `/404.html` | Any address that isn't a page |
-| `/app-ads.txt` | Not yet: added once the AdMob publisher ID is known |
+| `/app-ads.txt` | Tells ad networks which sellers may sell this app's ads: AdMob, publisher `pub-7644660963454743` |
 | `CNAME` | The custom domain, for GitHub Pages |
 | `.nojekyll` | Serve the files as they are |
 

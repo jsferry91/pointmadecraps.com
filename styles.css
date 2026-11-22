@@ -1,0 +1,355 @@
+/*
+  Point Made — dressed like the app: the felt's green for the header, the
+  rail's black below it, bone-white text, brass for what you can press.
+  One deliberate dark look, as in the app. No web fonts: Rockwell is the
+  slab face the app screens its layout in, built into Apple devices and most
+  Windows machines; elsewhere a sturdy serif stands in. Nothing here loads
+  from anywhere but this site.
+*/
+
+:root {
+  color-scheme: dark;
+
+  --ground: #0a0a0b;
+  --panel: #1a1a1c;
+  --well: #0f0f10;
+  --text: #efe8d8;
+  --quiet: #a9a294;
+  --hairline: rgba(239, 232, 216, 0.14);
+  --seam: rgba(239, 232, 216, 0.32);
+
+  --felt-centre: #3fae6c;
+  --felt-middle: #2c8f55;
+  --felt-edge: #1b6a3f;
+  --felt-shadow: #0f3d24;
+  --tagline: #f2c84b;
+
+  --brass-top: #e0bc58;
+  --brass-bottom: #a8791f;
+  --on-brass: #1e1505;
+
+  --win: #7ee6a8;
+
+  --slab: Rockwell, "Rockwell Nova", "Roboto Slab", "Zilla Slab", "Clarendon", Georgia, serif;
+  --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --measure: 42rem;
+  --gutter: clamp(16px, 5vw, 40px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--text);
+  font: 400 1.0625rem/1.6 var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--brass-top); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { color: #f0d27a; }
+
+:focus-visible {
+  outline: 2px solid var(--brass-top);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  padding: 8px 14px;
+  background: var(--brass-top);
+  color: var(--on-brass);
+  border-radius: 8px;
+  font-weight: 700;
+  z-index: 10;
+}
+.skip:focus { left: 8px; }
+
+/* ---------- The felt: header ---------- */
+
+.felt {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0 2px, transparent 2px 7px),
+    radial-gradient(120% 140% at 50% 0%, var(--felt-centre) 0%, var(--felt-middle) 45%, var(--felt-edge) 100%);
+  padding-inline: var(--gutter);
+  /* The rail's stitched seam where the felt ends. */
+  border-bottom: 1px solid #000;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+}
+.felt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -9px;
+  height: 0;
+  border-top: 1.5px dashed var(--seam);
+}
+
+.bar {
+  max-width: var(--measure);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 18px;
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font: 700 1.05rem/1 var(--slab);
+  letter-spacing: 0.04em;
+  text-shadow: 2px 2px 0 var(--felt-shadow);
+}
+.mark img { width: 32px; height: 32px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
+.mark:hover { color: var(--text); }
+
+nav ul {
+  display: flex;
+  gap: clamp(14px, 4vw, 26px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+nav a:hover { color: var(--text); opacity: 1; }
+nav a[aria-current="page"] { opacity: 1; text-decoration: underline; text-decoration-color: var(--tagline); text-underline-offset: 0.5em; text-decoration-thickness: 2px; }
+
+.hero {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-block: clamp(28px, 7vw, 64px) clamp(36px, 8vw, 72px);
+}
+
+.wordmark {
+  margin: 0;
+  font: 700 clamp(2.9rem, 13vw, 5.4rem)/0.95 var(--slab);
+  letter-spacing: 0.01em;
+  color: var(--text);
+  text-shadow: 3px 4px 0 var(--felt-shadow);
+  text-wrap: balance;
+}
+
+.tagline {
+  margin: 14px 0 0;
+  color: var(--tagline);
+  font-weight: 800;
+  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.lead {
+  max-width: 36rem;
+  margin: 24px 0 0;
+  font-size: clamp(1.1rem, 3.2vw, 1.3rem);
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.page-title {
+  margin: 0;
+  font: 700 clamp(2.2rem, 9vw, 3.4rem)/1 var(--slab);
+  text-shadow: 3px 3px 0 var(--felt-shadow);
+  text-wrap: balance;
+}
+.page-title + .tagline { margin-top: 12px; }
+
+/* The App Store's place: a brass-edged plate until there's a badge. */
+.plate {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(10, 10, 11, 0.55);
+  border: 1px solid rgba(224, 188, 88, 0.6);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.plate .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tagline);
+}
+
+/* ---------- The rail: the page below ---------- */
+
+main {
+  padding-inline: var(--gutter);
+  padding-block: clamp(36px, 7vw, 56px) 24px;
+}
+
+.column {
+  max-width: var(--measure);
+  margin-inline: auto;
+}
+
+h2 {
+  margin: 2.6em 0 0.5em;
+  font: 700 1.45rem/1.2 var(--slab);
+  color: var(--text);
+  text-wrap: balance;
+}
+.column > h2:first-child { margin-top: 0; }
+
+h3 {
+  margin: 1.8em 0 0.35em;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+p, ul, ol { margin: 0 0 1em; }
+li { margin-bottom: 0.45em; }
+li::marker { color: var(--brass-top); }
+
+.quiet { color: var(--quiet); }
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--quiet);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Ways to play: four panels, two across where there's room. */
+.modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 14px;
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
+}
+.modes li {
+  margin: 0;
+  padding: 20px 20px 18px;
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+}
+.modes h3 {
+  margin: 0 0 6px;
+  font: 700 1.2rem/1.2 var(--slab);
+}
+.modes p { margin: 0; color: var(--quiet); }
+
+/* A boxed note: the one thing on a page that stands apart. */
+.note {
+  margin: 1.6em 0;
+  padding: 18px 20px;
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--brass-top);
+  border-radius: 12px;
+}
+.note p:last-child { margin-bottom: 0; }
+
+.contact {
+  display: inline-block;
+  margin: 4px 0 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: linear-gradient(var(--brass-top), var(--brass-bottom));
+  color: var(--on-brass);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+.contact:hover { color: var(--on-brass); filter: brightness(1.06); }
+
+/* Questions and answers. */
+.faq {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--hairline);
+}
+.faq details {
+  border-bottom: 1px solid var(--hairline);
+}
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 16px 32px 16px 0;
+  position: relative;
+  font-weight: 700;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 4px;
+  top: 12px;
+  color: var(--brass-top);
+  font: 700 1.4rem/1.2 var(--body);
+}
+.faq details[open] summary::after { content: "–"; }
+.faq details > div { padding: 0 0 12px; }
+.after-faq { margin-top: 2em; }
+
+/* Numbers that line up, like the app's allowance lines. */
+.allowance {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.4em 0 1.2em;
+  font-variant-numeric: tabular-nums;
+}
+.allowance th, .allowance td {
+  text-align: left;
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  vertical-align: top;
+}
+.allowance th { color: var(--quiet); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+.allowance td:not(:first-child) { color: var(--win); font-weight: 700; white-space: nowrap; }
+
+.updated { color: var(--quiet); font-size: 0.95rem; }
+
+/* ---------- Footer ---------- */
+
+footer {
+  padding-inline: var(--gutter);
+  padding-block: 28px 40px;
+  margin-top: 48px;
+  border-top: 1.5px dashed var(--hairline);
+  color: var(--quiet);
+  font-size: 0.9rem;
+}
+footer .column { display: grid; gap: 8px; }
+footer p { margin: 0; }
+footer a { color: var(--quiet); }
+footer a:hover { color: var(--text); }
+footer .links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+
+@media (max-width: 480px) {
+  .bar { flex-wrap: wrap; }
+  .mark span { display: none; }
+}
